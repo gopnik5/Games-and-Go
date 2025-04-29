@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createStage } from '../gameHelpers';
+import { createStage, STAGE_HEIGHT} from '../gameHelpers';
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
@@ -28,7 +28,7 @@ export const useStage = (player, resetPlayer) => {
       player.tetromino.forEach((row, y) => {
         row.forEach((value, x) => {
           if (value !== 0) {
-            const newStageY = y + player.pos.y > 19? 19 : y + player.pos.y; 
+            const newStageY = y + player.pos.y > STAGE_HEIGHT-1? STAGE_HEIGHT-1 : y + player.pos.y; 
             const newStageX = x + player.pos.x; 
             newStage[newStageY][newStageX] = [
               value,
